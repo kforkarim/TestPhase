@@ -11,19 +11,9 @@
 
 @implementation AppDelegate
 
-//@synthesize products;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-//    [self loadProductsFromJSON:^(NSMutableArray *products, BOOL finished) {
-//        if (finished) {
-//            Product *productOne = (Product*)[products objectAtIndex:0];
-//            NSLog(@"%@",productOne.name);
-//        }
-//    }];
-//    
     return YES;
 }
 							

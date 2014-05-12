@@ -12,9 +12,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-/* This array consists of list of products populated from json into Product Model */
-//@property (strong, nonatomic) NSMutableArray *products;
-
 /* loadProductsFromJSON populates Products Mutable Array from JSON file */
 // Setup to test in XCTest
 - (void)loadProductsFromJSON:(void (^)(NSMutableArray *products, BOOL finished))completion;

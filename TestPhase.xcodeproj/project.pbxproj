@@ -21,10 +21,11 @@
 		B2F33139191E9DA700F7A896 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F3311B191E9DA700F7A896 /* UIKit.framework */; };
 		B2F33141191E9DA700F7A896 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2F3313F191E9DA700F7A896 /* InfoPlist.strings */; };
 		B2F33143191E9DA700F7A896 /* TestPhaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F33142191E9DA700F7A896 /* TestPhaseTests.m */; };
-		B2F3314F191E9E1E00F7A896 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F3314E191E9E1E00F7A896 /* Product.m */; };
 		B2F33151191EA43C00F7A896 /* product.json in Resources */ = {isa = PBXBuildFile; fileRef = B2F33150191EA43C00F7A896 /* product.json */; };
 		B2F33153191EA5C500F7A896 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F33152191EA5C500F7A896 /* libsqlite3.dylib */; };
 		B2F3315519200CF100F7A896 /* products.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B2F33154191EAAB200F7A896 /* products.sqlite */; };
+		D861BCAC1921247300B7AB5B /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = D861BCAA1921247300B7AB5B /* Product.m */; };
+		D861BCAF192124A100B7AB5B /* SQLiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D861BCAE192124A100B7AB5B /* SQLiteManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,11 +58,13 @@
 		B2F3313E191E9DA700F7A896 /* TestPhaseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestPhaseTests-Info.plist"; sourceTree = "<group>"; };
 		B2F33140191E9DA700F7A896 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B2F33142191E9DA700F7A896 /* TestPhaseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestPhaseTests.m; sourceTree = "<group>"; };
-		B2F3314D191E9E1E00F7A896 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
-		B2F3314E191E9E1E00F7A896 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		B2F33150191EA43C00F7A896 /* product.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = product.json; sourceTree = "<group>"; };
 		B2F33152191EA5C500F7A896 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B2F33154191EAAB200F7A896 /* products.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = products.sqlite; sourceTree = "<group>"; };
+		D861BCA91921247300B7AB5B /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		D861BCAA1921247300B7AB5B /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		D861BCAD192124A100B7AB5B /* SQLiteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteManager.h; sourceTree = "<group>"; };
+		D861BCAE192124A100B7AB5B /* SQLiteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +97,7 @@
 			children = (
 				B2F33154191EAAB200F7A896 /* products.sqlite */,
 				B2F33150191EA43C00F7A896 /* product.json */,
-				B2F3314C191E9DFC00F7A896 /* Model */,
+				D861BCA71921247300B7AB5B /* Classes */,
 				B2F3311D191E9DA700F7A896 /* TestPhase */,
 				B2F3313C191E9DA700F7A896 /* TestPhaseTests */,
 				B2F33116191E9DA700F7A896 /* Frameworks */,
@@ -166,14 +169,31 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B2F3314C191E9DFC00F7A896 /* Model */ = {
+		D861BCA71921247300B7AB5B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B2F3314D191E9E1E00F7A896 /* Product.h */,
-				B2F3314E191E9E1E00F7A896 /* Product.m */,
+				D861BCA81921247300B7AB5B /* Model */,
+				D861BCAB1921247300B7AB5B /* SQLite */,
 			);
-			name = Model;
-			path = Classes/Model;
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		D861BCA81921247300B7AB5B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D861BCA91921247300B7AB5B /* Product.h */,
+				D861BCAA1921247300B7AB5B /* Product.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D861BCAB1921247300B7AB5B /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				D861BCAD192124A100B7AB5B /* SQLiteManager.h */,
+				D861BCAE192124A100B7AB5B /* SQLiteManager.m */,
+			);
+			path = SQLite;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,8 +295,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D861BCAF192124A100B7AB5B /* SQLiteManager.m in Sources */,
 				B2F3312E191E9DA700F7A896 /* ViewController.m in Sources */,
-				B2F3314F191E9E1E00F7A896 /* Product.m in Sources */,
+				D861BCAC1921247300B7AB5B /* Product.m in Sources */,
 				B2F33128191E9DA700F7A896 /* AppDelegate.m in Sources */,
 				B2F33124191E9DA700F7A896 /* main.m in Sources */,
 			);
@@ -489,6 +510,7 @@
 				B2F33148191E9DA700F7A896 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2F33149191E9DA700F7A896 /* Build configuration list for PBXNativeTarget "TestPhaseTests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +519,7 @@
 				B2F3314B191E9DA700F7A896 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
