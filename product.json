@@ -1,0 +1,74 @@
+[
+    {
+        "pId": "abc123",
+        "name": "Table",
+        "description": "Table of its kind.",
+        "regularPrice": "100.00",
+        "salePrice": "80.00",
+        "image": "http://placehold.it/32x32",
+        "colors": [
+            "blue",
+            "green",
+            "red"
+        ],
+        "stores": [
+            {
+                "name": "Hoffman Estates"
+            },
+            {
+                "name": "Chicago"
+            },
+            {
+                "name": "Barrington"
+            }
+        ]
+    },
+    {
+        "pId": "abc456",
+        "name": "Chair",
+        "description": "Chair of its kind.",
+        "regularPrice": "50.00",
+        "salePrice": "25.00",
+        "image": "http://placehold.it/32x32",
+        "colors": [
+            "yellow",
+            "blue",
+            "white"
+        ],
+        "stores": [
+            {
+                "name": "Atlanta"
+            },
+            {
+                "name": "Decatur"
+            },
+            {
+                "name": "Stone Mountain"
+            }
+        ]
+    },
+    {
+        "pId": "abc789",
+        "name": "Shirt",
+        "description": "Shirt of its kind.",
+        "regularPrice": "29.99",
+        "salePrice": "19.99",
+        "image": "http://placehold.it/32x32",
+        "colors": [
+            "blue",
+            "green",
+            "orange"
+        ],
+        "stores": [
+            {
+                "name": "Chicago"
+            },
+            {
+                "name": "Spring Hills"
+            },
+            {
+                "name": "Farmington Hills"
+            }
+        ]
+    }
+]
