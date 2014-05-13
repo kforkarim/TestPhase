@@ -404,4 +404,49 @@
     return databasePath;
 }
 
++ (void)updateRecord:(Product*)product {
+    
+    NSString *databasePath = [self databasePath:@"products.sqlite"];
+    const char *dbpath = [databasePath UTF8String];
+    sqlite3 *productDB;
+    sqlite3_stmt *statement;
+    
+    //const char *insertQuery = "UPDATE `PRODUCT` (`pId`, `name`, `description`, `regularPrice`, `salePrice`, `image`, `colors`, `stores`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    
+    NSString *updateSQL = [NSString stringWithFormat:@"UPDATE PRODUCT set name = '%@' WHERE pId = ?", product.name];
+    const char *updateQuery = [updateSQL UTF8String];
+    
+    // Prepare the data to bind.
+    NSData *imageData = UIImagePNGRepresentation(product.image);
+    NSData *colorsData = [NSKeyedArchiver archivedDataWithRootObject:product.colors];
+    NSData *storesData = [NSKeyedArchiver archivedDataWithRootObject:product.stores];
+    
+    
+    if (sqlite3_open(dbpath, &productDB) == SQLITE_OK) {
+        
+        // Prepare the statement.
+        if (sqlite3_prepare_v2(productDB, updateQuery, -1, &statement, NULL) == SQLITE_OK) {
+            // Bind the parameters (note that these use a 1-based index, not 0).
+            sqlite3_bind_text(statement, 1, [product.pId UTF8String], -1, 0);
+            }
+        
+        else {
+            NSLog(@"Error while creating update statement. '%s'", sqlite3_errmsg(productDB));
+        }
+        
+        // Execute the statement.
+        if (sqlite3_step(statement) != SQLITE_DONE) {
+            // error handling...
+            NSLog(@"Error while creating update statement. '%s'", sqlite3_errmsg(productDB));
+        }
+        
+        // Clean up and delete the resources used by the prepared statement.
+        sqlite3_finalize(statement);
+        sqlite3_close(productDB);
+        
+    }
+
+    
+}
+
 @end

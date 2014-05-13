@@ -85,6 +85,12 @@
     [deleteRecord setTitle:@"Delete Record" forState:UIControlStateNormal];
     deleteRecord.frame = CGRectMake(self.view.bounds.origin.x+20, productSalePrice.frame.origin.y+40, 150.0, 150.0);
     [self.view addSubview:deleteRecord];
+    
+    UIButton *updateRecord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [updateRecord addTarget:self action:@selector(updateRecord) forControlEvents:UIControlEventTouchUpInside];
+    [updateRecord setTitle:@"Update Record" forState:UIControlStateNormal];
+    updateRecord.frame = CGRectMake(self.view.bounds.origin.x+140, productSalePrice.frame.origin.y+40, 150.0, 150.0);
+    [self.view addSubview:updateRecord];
 
 }
 
@@ -149,6 +155,14 @@
             [self viewDidLoad];
         }
     }];
+}
+
+- (void)updateRecord {
+    
+    if (self.product) {
+        [SQLiteManager updateRecord:self.product];
+    }
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

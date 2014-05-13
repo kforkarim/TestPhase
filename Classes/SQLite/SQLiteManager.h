@@ -20,5 +20,6 @@
 + (void)deleteAllRecordsFromProductTable:(void (^)(BOOL deleted))completion;
 + (void)deleteRecordFromProductTable:(NSString*)productName
                           Completion:(void (^)(BOOL deleted))completion;
++ (void)updateRecord:(Product*)product;
 
 @end
