@@ -11,6 +11,7 @@
 
 @interface ProductDetail : UIViewController <UIGestureRecognizerDelegate, UITextFieldDelegate>
 
+/* Custom Initialization of the ViewController with product Entry (Dependency Injection Design Pattern Used here) */
 - (id)initWithProduct:(Product*)productName;
 
 @end

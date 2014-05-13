@@ -56,8 +56,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // Setting the FullScreen Flag by default to FALSE
     isFullScreen = FALSE;
     
+    // Setup Custom SubView's
     [self setupImageView];
     
     UILabel *productName = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x+20, self.imageView.bounds.size.height+40, 200.0, 100.0)];
@@ -128,6 +131,8 @@
     return self;
 }
 
+#pragma mark - Image to Full Screen
+
 - (void)imgToFullScreen:(UITapGestureRecognizer*)sender {
     
     if (!isFullScreen) {
@@ -145,7 +150,7 @@
             self.imageView.frame = self.view.bounds;
             
         }
-                         completion:^(BOOL finished){
+                         completion:^(BOOL finished) {
             
                              isFullScreen = TRUE;
         }];
@@ -160,7 +165,7 @@
             [self.imageView setFrame:previousFrame];
 
         }
-                         completion:^(BOOL finished){
+                         completion:^(BOOL finished) {
                              [self.proxyView removeFromSuperview];
                              self.proxyView = nil;
                              isFullScreen = FALSE;
@@ -170,6 +175,8 @@
     }
 
 }
+
+#pragma mark - Delete Record
 
 - (void)deleteRecord {
     
@@ -185,6 +192,8 @@
     }];
 }
 
+#pragma mark - Update Record
+
 - (void)updateRecord {
     
     if (self.product) {
@@ -192,6 +201,8 @@
     }
     
 }
+
+#pragma mark - UITextField Delegate to set Text to Model
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
@@ -214,6 +225,8 @@
     [textField resignFirstResponder];
     return NO;
 }
+
+#pragma mark - Setup ImageView
 
 - (void)setupImageView {
     

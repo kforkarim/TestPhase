@@ -14,7 +14,14 @@
 
 @interface ViewController ()
 
+/* Populates the products in productList Array once the PRODUCTS have been created */
 @property (nonatomic) NSArray *productList;
+
+/* Creates the Product in PRODUCT Table */
+- (void)createProduct;
+
+/* Shows Product List in ListViewController */
+- (void)showProductList;
 
 @end
 
@@ -27,21 +34,21 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    
+    // Add Create Product Button which inserts data from JSON to SQLite
     UIButton *createProductButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [createProductButton addTarget:self action:@selector(createProduct) forControlEvents:UIControlEventTouchUpInside];
     [createProductButton setTitle:@"Create Product" forState:UIControlStateNormal];
     createProductButton.frame = CGRectMake(self.view.bounds.origin.x+15,self.view.bounds.origin.y+250,150.0,50.0);
     [self.view addSubview:createProductButton];
     
+    
+    // Show Product Button display's all the products within the "PRODUCT" Table
     UIButton *showProductButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [showProductButton addTarget:self action:@selector(showProductList) forControlEvents:UIControlEventTouchUpInside];
     [showProductButton setTitle:@"Show Product" forState:UIControlStateNormal];
     showProductButton.frame = CGRectMake(self.view.bounds.origin.x+150,self.view.bounds.origin.y+250,150.0,50.0);
     [self.view addSubview:showProductButton];
-    
-//    [SQLiteManager deleteAllRecordsFromProductTable:^(BOOL finished) {
-//        NSLog(@"%i",finished);
-//    }];
     
 }
 
@@ -50,6 +57,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Create Product
 
 - (void)createProduct {
     
@@ -81,10 +90,11 @@
     
 }
 
+#pragma mark - Show Product List
+
 - (void)showProductList {
     
     ListViewController *listViewController = [[ListViewController alloc] init];
-    
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:listViewController];
     [self presentViewController:navigationController animated:YES completion:nil];
 }

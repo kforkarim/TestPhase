@@ -62,9 +62,11 @@
     XCTAssertEqual(didProductTableGotCreated, YES);
 }
 
-- (void)testInsertData {
+- (void)testDeleteAllRecords {
     
-    [SQLiteManager insertData:nil];
+    [SQLiteManager deleteAllRecordsFromProductTable:^(BOOL finished) {
+        XCTAssertEqual(finished, YES);
+    }];
 }
 
 @end
