@@ -179,6 +179,7 @@
             NSLog(@"yes");
             self.product = nil;
             [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+            self.imageView = nil;
             [self viewDidLoad];
         }
     }];

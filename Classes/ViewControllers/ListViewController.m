@@ -35,6 +35,10 @@
     
     [super viewWillAppear:YES];
     
+    UIBarButtonItem *dismissButton = [[UIBarButtonItem alloc] initWithTitle:@"Dismiss" style:UIBarButtonItemStylePlain target:self action:@selector(dismissViewController)];
+    
+    self.navigationItem.rightBarButtonItem = dismissButton;
+    
     [self.view setBackgroundColor:[UIColor whiteColor]];
     self.title = @"Product List";
     
@@ -93,6 +97,15 @@
     cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.textLabel.text =  product.name;
     cell.imageView.image = product.image;
+    
+    // This is to resize the image in UIImageView
+    CGSize itemSize = CGSizeMake(40, 40);
+    UIGraphicsBeginImageContextWithOptions(itemSize, NO, UIScreen.mainScreen.scale);
+    CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
+    [cell.imageView.image drawInRect:imageRect];
+    cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
     return cell;
 }
 
@@ -105,4 +118,9 @@
 
 }
 
+
+- (void)dismissViewController {
+                                         
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 @end
