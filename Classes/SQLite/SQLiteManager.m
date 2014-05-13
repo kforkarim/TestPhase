@@ -335,6 +335,59 @@
     }
 }
 
++ (void)deleteRecordFromProductTable:(NSString*)productName
+                          Completion:(void (^)(BOOL deleted))completion {
+    
+    NSString *databasePath = [self databasePath:@"products.sqlite"];
+    const char *dbpath = [databasePath UTF8String];
+    sqlite3 *productDB;
+    sqlite3_stmt *selectStatement;
+    
+    // Open database first
+    if (sqlite3_open(dbpath, &productDB) == SQLITE_OK) {
+        // Sql query
+        const char *deleteQuery = "DELETE FROM `PRODUCT` WHERE `name` = ?";
+        
+        // We are preparing the statement here
+        if(sqlite3_prepare_v2(productDB, deleteQuery,-1, &selectStatement, NULL) == SQLITE_OK) {
+            
+            sqlite3_bind_text(selectStatement, 1, [productName UTF8String], -1, 0);
+            
+            if(sqlite3_step(selectStatement) == SQLITE_DONE) {
+                
+                BOOL finished = YES;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if (completion != nil) {
+                        completion(finished);
+                    }
+                });
+                
+            }
+            
+            else {
+                
+                BOOL finished = NO;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if (completion != nil) {
+                        completion(finished);
+                    }
+                });
+
+            }
+        }
+        
+        // Finalizing the statement
+        sqlite3_finalize(selectStatement);
+        // Closing the database
+        sqlite3_close(productDB);
+    }
+
+}
+
 + (NSString*)databasePath:(NSString*)dbName {
     
     NSString *docsDir;

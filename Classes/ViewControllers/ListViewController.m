@@ -8,6 +8,7 @@
 
 #import "ListViewController.h"
 #import "SQLiteManager.h"
+#import "ProductDetail.h"
 
 @interface ListViewController ()
 
@@ -36,12 +37,6 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     self.title = @"Product List";
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
     if (!self.productListTableView) {
         self.productListTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
@@ -61,6 +56,14 @@
             [productListTableView reloadData];
         }
     }];
+
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,6 +94,15 @@
     cell.imageView.image = product.image;
     NSLog(@"%@",product.image);
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    Product *product = [self.producsList objectAtIndex:indexPath.row];
+    ProductDetail *productDetail = [[ProductDetail alloc] initWithProduct:product];
+    productDetail.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:productDetail animated:YES];
+
 }
 
 @end

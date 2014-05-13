@@ -18,5 +18,7 @@
 + (Product*)queryProductTable:(NSString*)productName;
 + (void)queryAllProductsFromProductTable:(void (^)(NSMutableArray *products, BOOL finished))completion;
 + (void)deleteAllRecordsFromProductTable:(void (^)(BOOL deleted))completion;
++ (void)deleteRecordFromProductTable:(NSString*)productName
+                          Completion:(void (^)(BOOL deleted))completion;
 
 @end

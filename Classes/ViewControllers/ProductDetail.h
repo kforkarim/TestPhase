@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Product.h"
 
-@interface ProductDetail : UIViewController
+@interface ProductDetail : UIViewController <UIGestureRecognizerDelegate, UITextFieldDelegate>
+
+- (id)initWithProduct:(Product*)productName;
 
 @end
