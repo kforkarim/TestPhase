@@ -217,6 +217,124 @@
     return nil;
 }
 
++ (void)queryAllProductsFromProductTable:(void (^)(NSMutableArray *products, BOOL finished))completion {
+    
+    // Now let's try to query! Just select the data column.
+    NSString *databasePath = [self databasePath:@"products.sqlite"];
+    const char *dbpath = [databasePath UTF8String];
+    sqlite3 *productDB;
+    const char *selectSql = "SELECT * FROM PRODUCT";
+    sqlite3_stmt *selectStatement;
+    
+    if (sqlite3_open(dbpath, &productDB) == SQLITE_OK) {
+        
+        if (sqlite3_prepare_v2(productDB, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+            // Bind the name parameter.
+            sqlite3_bind_text(selectStatement, 1, "", -1, 0);
+        }
+        
+        NSMutableArray *productsList = [[NSMutableArray alloc] init];
+        
+        // Execute the statement and iterate over all the resulting rows.
+        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+            // We got a row back. Let's extract that BLOB.
+            // Notice the columns have 0-based indices here.
+            
+            Product *selectedProduct = [[Product alloc] init];
+            
+            selectedProduct.pId = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 0)];
+            selectedProduct.name = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1)];
+            selectedProduct.description = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 2)];
+            selectedProduct.regularPrice = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 3)];
+            selectedProduct.salePrice = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 4)];
+            
+            const void *blobBytesOne = sqlite3_column_blob(selectStatement, 5);
+            int blobBytesLengthOne = sqlite3_column_bytes(selectStatement, 5); // Count the number of bytes in the BLOB.
+            NSData *imageData = [NSData dataWithBytes:blobBytesOne length:blobBytesLengthOne];
+            UIImage *image = [UIImage imageWithData:imageData];
+            selectedProduct.image = image;
+            
+            const void *blobBytesTwo = sqlite3_column_blob(selectStatement, 6);
+            int blobBytesLengthTwo = sqlite3_column_bytes(selectStatement, 6); // Count the number of bytes in the BLOB.
+            NSData *colorsData = [NSData dataWithBytes:blobBytesTwo length:blobBytesLengthTwo];
+            NSArray *colors = [NSKeyedUnarchiver unarchiveObjectWithData:colorsData];
+            selectedProduct.colors = colors;
+            
+            const void *blobBytesThree = sqlite3_column_blob(selectStatement, 6);
+            int blobBytesLengthThree = sqlite3_column_bytes(selectStatement, 6); // Count the number of bytes in the BLOB.
+            NSData *storesData = [NSData dataWithBytes:blobBytesThree length:blobBytesLengthThree];
+            NSDictionary *stores = [NSKeyedUnarchiver unarchiveObjectWithData:storesData];
+            selectedProduct.stores = stores;
+            
+            [productsList addObject:selectedProduct];
+            
+        }
+        
+        // Clean up the select statement
+        sqlite3_finalize(selectStatement);
+        
+        // Close the connection to the database.
+        sqlite3_close(productDB);
+        
+        BOOL completed = YES;
+        
+        completion(productsList,completed);
+    }
+    
+    else {
+        
+        BOOL completed = NO;
+        completion(nil,completed);
+    }
+}
+
++ (void)deleteAllRecordsFromProductTable:(void (^)(BOOL deleted))completion {
+    
+    NSString *databasePath = [self databasePath:@"products.sqlite"];
+    const char *dbpath = [databasePath UTF8String];
+    sqlite3 *productDB;
+    sqlite3_stmt *selectStatement;
+    
+    // Open database first
+    if (sqlite3_open(dbpath, &productDB) == SQLITE_OK) {
+        // Sql query
+        const char *deleteQuery = "DELETE FROM PRODUCT";
+        // We are preparing the statement here
+        if(sqlite3_prepare_v2(productDB, deleteQuery,-1, &selectStatement, NULL) == SQLITE_OK) {
+            
+            // If that prepared statement is OK then we can execute that statement
+            if(sqlite3_step(selectStatement) == SQLITE_DONE) {
+                
+                BOOL finished = YES;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if (completion != nil) {
+                        completion(finished);
+                    }
+                });
+
+            }
+            else {
+                
+                BOOL finished = NO;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if (completion != nil) {
+                        completion(finished);
+                    }
+                });
+
+            }
+        }
+        // Finalizing the statement
+        sqlite3_finalize(selectStatement);
+        // Closing the database
+        sqlite3_close(productDB);
+    }
+}
+
 + (NSString*)databasePath:(NSString*)dbName {
     
     NSString *docsDir;

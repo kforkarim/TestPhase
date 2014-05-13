@@ -16,5 +16,7 @@
 + (BOOL)didProductTableCreatedSuccessfully:(NSString*)databaseName;
 + (void)insertData:(Product*)product;
 + (Product*)queryProductTable:(NSString*)productName;
++ (void)queryAllProductsFromProductTable:(void (^)(NSMutableArray *products, BOOL finished))completion;
++ (void)deleteAllRecordsFromProductTable:(void (^)(BOOL deleted))completion;
 
 @end

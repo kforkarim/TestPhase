@@ -5,7 +5,7 @@
         "description": "Table of its kind.",
         "regularPrice": "100.00",
         "salePrice": "80.00",
-        "image": "http://placehold.it/32x32",
+        "image": "Table.png",
         "colors": [
             "blue",
             "green",
@@ -29,7 +29,7 @@
         "description": "Chair of its kind.",
         "regularPrice": "50.00",
         "salePrice": "25.00",
-        "image": "http://placehold.it/32x32",
+        "image": "Chair.png",
         "colors": [
             "yellow",
             "blue",
@@ -53,7 +53,7 @@
         "description": "Shirt of its kind.",
         "regularPrice": "29.99",
         "salePrice": "19.99",
-        "image": "http://placehold.it/32x32",
+        "image": "Shirt.png",
         "colors": [
             "blue",
             "green",

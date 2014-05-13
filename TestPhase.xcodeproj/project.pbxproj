@@ -24,6 +24,8 @@
 		B2F33151191EA43C00F7A896 /* product.json in Resources */ = {isa = PBXBuildFile; fileRef = B2F33150191EA43C00F7A896 /* product.json */; };
 		B2F33153191EA5C500F7A896 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F33152191EA5C500F7A896 /* libsqlite3.dylib */; };
 		B2F3315519200CF100F7A896 /* products.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B2F33154191EAAB200F7A896 /* products.sqlite */; };
+		D8588F031921D839006A21C5 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8588F021921D839006A21C5 /* ListViewController.m */; };
+		D8588F061921DF4D006A21C5 /* ProductDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = D8588F051921DF4D006A21C5 /* ProductDetail.m */; };
 		D861BCAC1921247300B7AB5B /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = D861BCAA1921247300B7AB5B /* Product.m */; };
 		D861BCAF192124A100B7AB5B /* SQLiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D861BCAE192124A100B7AB5B /* SQLiteManager.m */; };
 /* End PBXBuildFile section */
@@ -61,6 +63,10 @@
 		B2F33150191EA43C00F7A896 /* product.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = product.json; sourceTree = "<group>"; };
 		B2F33152191EA5C500F7A896 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B2F33154191EAAB200F7A896 /* products.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = products.sqlite; sourceTree = "<group>"; };
+		D8588F011921D839006A21C5 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		D8588F021921D839006A21C5 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		D8588F041921DF4D006A21C5 /* ProductDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetail.h; sourceTree = "<group>"; };
+		D8588F051921DF4D006A21C5 /* ProductDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetail.m; sourceTree = "<group>"; };
 		D861BCA91921247300B7AB5B /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		D861BCAA1921247300B7AB5B /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		D861BCAD192124A100B7AB5B /* SQLiteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteManager.h; sourceTree = "<group>"; };
@@ -169,11 +175,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D8588F001921D839006A21C5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D8588F011921D839006A21C5 /* ListViewController.h */,
+				D8588F021921D839006A21C5 /* ListViewController.m */,
+				D8588F041921DF4D006A21C5 /* ProductDetail.h */,
+				D8588F051921DF4D006A21C5 /* ProductDetail.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		D861BCA71921247300B7AB5B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				D861BCA81921247300B7AB5B /* Model */,
 				D861BCAB1921247300B7AB5B /* SQLite */,
+				D8588F001921D839006A21C5 /* ViewControllers */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -296,7 +314,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D861BCAF192124A100B7AB5B /* SQLiteManager.m in Sources */,
+				D8588F061921DF4D006A21C5 /* ProductDetail.m in Sources */,
 				B2F3312E191E9DA700F7A896 /* ViewController.m in Sources */,
+				D8588F031921D839006A21C5 /* ListViewController.m in Sources */,
 				D861BCAC1921247300B7AB5B /* Product.m in Sources */,
 				B2F33128191E9DA700F7A896 /* AppDelegate.m in Sources */,
 				B2F33124191E9DA700F7A896 /* main.m in Sources */,
