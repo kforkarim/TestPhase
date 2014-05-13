@@ -30,13 +30,13 @@
     UIButton *createProductButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [createProductButton addTarget:self action:@selector(createProduct) forControlEvents:UIControlEventTouchUpInside];
     [createProductButton setTitle:@"Create Product" forState:UIControlStateNormal];
-    createProductButton.frame = CGRectMake(self.view.bounds.origin.x+15,self.view.bounds.origin.y+200,150.0,150.0);
+    createProductButton.frame = CGRectMake(self.view.bounds.origin.x+15,self.view.bounds.origin.y+250,150.0,50.0);
     [self.view addSubview:createProductButton];
     
     UIButton *showProductButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [showProductButton addTarget:self action:@selector(showProductList) forControlEvents:UIControlEventTouchUpInside];
     [showProductButton setTitle:@"Show Product" forState:UIControlStateNormal];
-    showProductButton.frame = CGRectMake(self.view.bounds.origin.x+150,self.view.bounds.origin.y+200,150.0,150.0);
+    showProductButton.frame = CGRectMake(self.view.bounds.origin.x+150,self.view.bounds.origin.y+250,150.0,50.0);
     [self.view addSubview:showProductButton];
     
 //    [SQLiteManager deleteAllRecordsFromProductTable:^(BOOL finished) {

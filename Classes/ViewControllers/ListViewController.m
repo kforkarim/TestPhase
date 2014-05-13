@@ -90,9 +90,9 @@
     }
     
     Product *product = [self.producsList objectAtIndex:indexPath.row];
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.textLabel.text =  product.name;
     cell.imageView.image = product.image;
-    NSLog(@"%@",product.image);
     return cell;
 }
 

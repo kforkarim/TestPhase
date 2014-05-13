@@ -413,13 +413,8 @@
     
     //const char *insertQuery = "UPDATE `PRODUCT` (`pId`, `name`, `description`, `regularPrice`, `salePrice`, `image`, `colors`, `stores`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     
-    NSString *updateSQL = [NSString stringWithFormat:@"UPDATE PRODUCT set name = '%@' WHERE pId = ?", product.name];
+    NSString *updateSQL = [NSString stringWithFormat:@"UPDATE PRODUCT set name = '%@', description = '%@', regularPrice = '%@', salePrice = '%@' WHERE pId = ?", product.name,product.description,product.regularPrice,product.salePrice];
     const char *updateQuery = [updateSQL UTF8String];
-    
-    // Prepare the data to bind.
-    NSData *imageData = UIImagePNGRepresentation(product.image);
-    NSData *colorsData = [NSKeyedArchiver archivedDataWithRootObject:product.colors];
-    NSData *storesData = [NSKeyedArchiver archivedDataWithRootObject:product.stores];
     
     
     if (sqlite3_open(dbpath, &productDB) == SQLITE_OK) {
